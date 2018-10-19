@@ -9,31 +9,37 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'request_scheduler_client'
+gem 'request_scheduler_client', github: 'CExpress/request-scheduler-client'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install request_scheduler_client
-
 ## Usage
 
-TODO: Write usage instructions here
+You need to configure the gem for using it:
 
-## Development
+```ruby
+RequestSchedulerClient.setup do |config|
+  config.host = 'http://salmon.request-scheduler.c66.me' # The endpoint where the Request Scheduler service is running. (This is the production)
+  config.api_key = 'oCVxjMZzG7JjHnWKcCWJhpQx' # The Application token to access the scheduler service (you need to create an Application to access it in the scheduler service backend)
+  config.api_version = 1 # The API version of the scheduler service (it is currently 1)
+end
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After configuring you are free to start to capture and to send requests to the Request Scheduler service:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+response = RequestSchedulerClient::Client.new('2020-01-01 20:00:00 -0300').perform do
+  calculate = 3 + 3
 
-## Contributing
+  HTTParty.get('http://google.com')
+end
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/request_scheduler_client.
+The request made by HTTParty won't be performed, rather it'll be captured and a call to the Request Scheduler service will be made to schedule it to `2020-01-01 20:00:00`. The response is the `ScheduledRequest` returned
 
-## License
+## Note
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+It's important to notice that the `Client.perform` captures only one request, it means that if you have more than one request being made inside the block, it'll capture only the first.

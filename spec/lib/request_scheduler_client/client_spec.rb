@@ -1,4 +1,3 @@
-require 'byebug'
 require 'httparty'
 
 RSpec.describe RequestSchedulerClient::Client do

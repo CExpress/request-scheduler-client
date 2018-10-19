@@ -1,8 +1,8 @@
 require 'webmock'
-require 'webmock/net_connect_not_allowed_error'
-require 'request_scheduler_client/version'
-require 'request_scheduler_client/client'
-require 'request_scheduler_client/capture_request'
+require_relative 'webmock/net_connect_not_allowed_error'
+require_relative 'request_scheduler_client/version'
+require_relative 'request_scheduler_client/client'
+require_relative 'request_scheduler_client/capture_request'
 
 module RequestSchedulerClient
   class MissingConfiguration < ::RuntimeError

@@ -1,5 +1,4 @@
 require 'httparty'
-require 'byebug'
 
 RSpec.describe RequestSchedulerClient::CaptureRequest do
   describe '.call' do

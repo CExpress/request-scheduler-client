@@ -1,3 +1,5 @@
+require 'httparty'
+
 module RequestSchedulerClient
   class Client
     attr_reader :scheduled_at
@@ -14,13 +16,14 @@ module RequestSchedulerClient
 
       HTTParty.post(endpoint,
                     headers: {'Content-Type': 'application/json'},
-                    body: {
+                    query: {
                       api_key: api_key,
                       scheduled_request: {
                         scheduled_at: scheduled_at,
-                        url: request.uri.to_s,
+                        http_method: request.method,
+                        uri: request.uri.to_s,
                         body: request.body,
-                        headers: request.headers
+                        headers: request.headers.to_json
                       }
                     })
     end

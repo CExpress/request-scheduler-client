@@ -1,16 +1,16 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "request_scheduler_api/version"
+require "request_scheduler_client/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "request_scheduler_api"
+  spec.name          = "request_scheduler_client"
   spec.version       = RequestSchedulerClient::VERSION
   spec.authors       = ["Pedro F Steimbruch"]
   spec.email         = ["pedrofsteimbruch@gmail.com"]
 
   spec.summary       = %q{It provides a generic method to log every request and post them to a datasource of choice.}
-  spec.homepage      = "https://www.github.com/pedrofs/request_scheduler_api"
+  spec.homepage      = "https://www.github.com/pedrofs/request_scheduler_client"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -40,5 +40,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "httparty"
   spec.add_development_dependency "byebug"
   spec.add_development_dependency 'sendgrid-ruby'
+  spec.add_development_dependency 'webmock', '~> 3.4'
 end
 

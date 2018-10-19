@@ -1,6 +1,6 @@
 module RequestSchedulerClient
   class CaptureRequest
-    def call
+    def call &block
       WebMock.enable!
 
       request = nil
@@ -11,7 +11,9 @@ module RequestSchedulerClient
         request = e.request_signature
       end
 
-      WebMock.disable!
+      if RequestSchedulerClient.configuration.disable_webmock
+        WebMock.disable!
+      end
 
       request || (raise RuntimeError.new("No request was made"))
     end

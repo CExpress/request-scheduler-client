@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'webmock/rspec'
 require 'request_scheduler_client'
 
 RSpec.configure do |config|

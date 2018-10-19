@@ -57,13 +57,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  request_scheduler_client!
   bundler (~> 1.16)
   byebug
   httparty
   rake (~> 12.0)
+  request_scheduler_client!
   rspec (~> 3.0)
   sendgrid-ruby
+  webmock (~> 3.4)
 
 BUNDLED WITH
    1.16.5

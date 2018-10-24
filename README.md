@@ -38,7 +38,9 @@ response = RequestSchedulerClient::Client.new('2020-01-01 20:00:00 -0300').perfo
 end
 ```
 
-The request made by HTTParty won't be performed, rather it'll be captured and a call to the Request Scheduler service will be made to schedule it to `2020-01-01 20:00:00`. The response is the `ScheduledRequest` returned
+The request made by HTTParty won't be performed, rather it'll be captured and a call to the Request Scheduler service will be made to schedule it to `2020-01-01 20:00:00`. The response is the a JSON representing created `ScheduledRequest`.
+
+You can send a request to be performed write away and not scheduled to the future. For this to happen you just need to initialize the `RequestSchedulerClient::Client` without argument.
 
 ## Note
 
